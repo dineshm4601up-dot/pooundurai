@@ -1169,3 +1169,814 @@ font-size:16px;
 .table-responsive td {
     text-align: middle;
 }
+/* =====================================================
+   ORGANIZATION CHART
+===================================================== */
+/* =========================================================
+   ORGANIZATION CHART - EXPECTED DESKTOP STRUCTURE
+========================================================= */
+
+.org-chart {
+    width: 100%;
+    max-width: 1250px;
+    margin: 35px auto 60px;
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* =========================================================
+   COMMON CARD
+========================================================= */
+
+.org-member {
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.10);
+    text-align: center;
+    position: relative;
+    box-sizing: border-box;
+    overflow: visible;
+}
+
+.org-member .member-photo {
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+    border: 5px solid #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.20);
+    display: block;
+    margin: -55px auto 8px;
+    position: relative;
+    z-index: 2;
+}
+
+.org-member h3 {
+    margin: 7px 8px 3px;
+    font-size: 20px;
+    line-height: 1.3;
+    color: #8b1717;
+    font-weight: 700;
+}
+
+.org-member p {
+    margin: 0 8px 14px;
+    font-size: 16px;
+    line-height: 1.35;
+    color: #555;
+}
+
+/* =========================================================
+   TOP LEVEL
+   3 LARGE CARDS IN ONE ROW
+========================================================= */
+
+.top-level {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 75px;
+    width: 100%;
+    padding: 55px 20px 0;
+    box-sizing: border-box;
+}
+
+.top-level .org-member {
+    min-height: 210px;
+    padding: 55px 15px 15px;
+}
+
+/* Individual top-card border colors */
+
+.top-level .chairman {
+    border-top: 3px solid #c62828;
+}
+
+.top-level .secretary {
+    border-top: 3px solid #173fc5;
+}
+
+.top-level .treasurer {
+    border-top: 3px solid #126b32;
+}
+
+/* =========================================================
+   ROLE BADGES
+========================================================= */
+
+.role-badge {
+    display: inline-block;
+    padding: 6px 18px;
+    border-radius: 20px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+/* Top roles */
+
+.chairman-badge {
+    background: #bd1717;
+}
+
+.secretary-badge {
+    background: #1649c5;
+}
+
+.treasurer-badge {
+    background: #087331;
+}
+
+/* =========================================================
+   TOP CONNECTOR
+========================================================= */
+
+.connector-top {
+    height: 60px;
+    width: 60%;
+    margin: 0 auto;
+    position: relative;
+    border-bottom: 3px solid #c98b22;
+}
+
+/* Vertical connection from top cards */
+
+.connector-top::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: 16.66%;
+    height: 60px;
+    border-left: 2px solid #c98b22;
+}
+
+.connector-top::after {
+    content: "";
+    position: absolute;
+    top: -2px;
+    right: 16.66%;
+    height: 60px;
+    border-left: 2px solid #c98b22;
+}
+
+/* =========================================================
+   SECOND LEVEL
+   TWO GROUPS
+========================================================= */
+
+.second-level {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 45px;
+    width: 100%;
+    padding: 0 10px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+/* Each group */
+
+.sub-group {
+    position: relative;
+    min-width: 0;
+}
+
+/* Group title */
+
+.sub-title {
+    display: table;
+    margin: 0 auto 22px;
+    padding: 6px 20px;
+    border-radius: 18px;
+    color: #ffffff;
+    background: #e56d12;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.2;
+    position: relative;
+    z-index: 3;
+}
+
+/* Right group title */
+
+.second-level .sub-group:nth-child(2) .sub-title {
+    background: #941b7e;
+}
+
+/* Two cards inside each group */
+
+.sub-members {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
+
+/* Second level card */
+
+.small-card {
+    min-width: 0;
+    min-height: 175px;
+    padding: 45px 8px 10px;
+    border-top: 3px solid #e56d12;
+}
+
+.small-card .member-photo {
+    width: 82px;
+    height: 82px;
+    margin-top: -45px;
+}
+
+.small-card h3 {
+    font-size: 17px;
+}
+
+.small-card p {
+    font-size: 14px;
+}
+
+/* Second level badges */
+
+.vice-badge {
+    background: #e86d0c;
+    font-size: 13px;
+    padding: 5px 12px;
+}
+
+.assistant-badge {
+    background: #8b1680;
+    font-size: 13px;
+    padding: 5px 12px;
+}
+
+/* =========================================================
+   MIDDLE CONNECTOR
+========================================================= */
+
+.connector-middle {
+    width: 82%;
+    height: 55px;
+    margin: 0 auto;
+    position: relative;
+    border-bottom: 3px solid #c98b22;
+}
+
+/* Center vertical line */
+
+.connector-middle::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    height: 55px;
+    border-left: 2px solid #c98b22;
+}
+
+/* =========================================================
+   AUDITOR TITLE
+========================================================= */
+
+.section-title {
+    text-align: center;
+    margin: 0 0 28px;
+    position: relative;
+}
+
+.section-title_a {
+    text-align: center;
+    margin: 0 0 28px;
+    position: relative;
+}
+
+.section-title h2 {
+    display: inline-block;
+    margin: 0;
+    padding: 7px 22px;
+    border-radius: 18px;
+    background: #a91919;
+    color: #ffffff;
+    font-size: 18px;
+    line-height: 1.2;
+}
+
+
+/* =========================================================
+   AUDITORS
+   IMPORTANT: ALL 4 IN ONE ROW
+========================================================= */
+
+.auditors-row {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    width: 100%;
+    padding: 0 25px;
+    box-sizing: border-box;
+}
+
+/* Auditor cards */
+
+.auditors-row .org-member {
+    min-width: 0;
+    min-height: 90px;
+    padding: 15px 10px 10px 95px;
+    text-align: left;
+    border-top: 3px solid #e89b22;
+}
+
+/* Auditor image */
+
+.auditors-row .member-photo {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 72px;
+    height: 72px;
+    margin: 0;
+}
+
+/* Auditor badge */
+
+.auditors-row .role-badge {
+    display: none;
+}
+
+/* Auditor name */
+
+.auditors-row h3 {
+    font-size: 16px;
+    margin: 4px 0;
+    line-height: 1.25;
+}
+
+/* Auditor location */
+
+.auditors-row p {
+    font-size: 12px;
+    margin: 0;
+    line-height: 1.25;
+}
+
+/* =========================================================
+   BOTTOM CONNECTOR
+========================================================= */
+
+.connector-bottom {
+    width: 2px;
+    height: 50px;
+    margin: 0 auto;
+    background: #c98b22;
+    position: relative;
+}
+
+/* =========================================================
+   ACCOUNTANT
+   CENTERED BELOW AUDITORS
+========================================================= */
+
+.accountant-row {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.section-title_a h2 {
+    display: inline-block;
+    margin: 0;
+    padding: 7px 22px;
+    border-radius: 18px;
+    background: #218b87;
+    color: #ffffff;
+    font-size: 18px;
+    line-height: 1.2;
+}
+
+.accountant-card {
+    width: 395px;
+    min-height: 105px;
+    padding: 14px 15px 10px 110px;
+    text-align: left;
+    border: 1px solid #8bc5c5;
+    border-top: 3px solid #218b87;
+    position: relative;
+}
+
+/* Accountant photo */
+
+.accountant-card .member-photo {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 82px;
+    height: 82px;
+    margin: 0;
+}
+
+/* Accountant badge */
+
+.accountant-badge {
+    background: #157d7a;
+    font-size: 13px;
+    padding: 5px 12px;
+}
+
+/* Accountant text */
+
+.accountant-card h3 {
+    font-size: 18px;
+    margin: 5px 0;
+}
+
+.accountant-card p {
+    font-size: 14px;
+    margin: 0;
+}
+
+/* =========================================================
+   DESKTOP LINE CONNECTIONS
+========================================================= */
+
+/* Horizontal line connecting the 3 top cards */
+
+.top-level {
+    position: relative;
+}
+
+.top-level::before {
+    content: "";
+    position: absolute;
+    left: 15%;
+    right: 15%;
+    top: 0;
+    border-top: 2px solid #c98b22;
+}
+
+/* Vertical line from top row */
+
+.top-level .org-member::before {
+    content: "";
+    position: absolute;
+    top: -55px;
+    left: 50%;
+    height: 55px;
+    border-left: 2px solid #c98b22;
+}
+
+/* =========================================================
+   RESPONSIVE - TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .org-chart {
+        max-width: 95%;
+    }
+
+    .top-level {
+        gap: 25px;
+    }
+
+    .second-level {
+        gap: 25px;
+    }
+
+    .auditors-row {
+        gap: 12px;
+        padding: 0 10px;
+    }
+
+    .auditors-row .org-member {
+        padding-left: 80px;
+    }
+
+    .auditors-row .member-photo {
+        width: 62px;
+        height: 62px;
+        left: 8px;
+    }
+
+    .auditors-row h3 {
+        font-size: 14px;
+    }
+
+    .auditors-row p {
+        font-size: 11px;
+    }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 750px) {
+
+    .org-chart {
+        width: 94%;
+        margin-top: 25px;
+    }
+
+    /* Top cards become one column */
+
+    .top-level {
+        grid-template-columns: 1fr;
+        gap: 65px;
+        padding-top: 55px;
+    }
+
+    .top-level .org-member {
+        max-width: 380px;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .top-level::before,
+    .top-level .org-member::before,
+    .connector-top::before,
+    .connector-top::after {
+        display: none;
+    }
+
+    .connector-top {
+        width: 2px;
+        height: 50px;
+        border: none;
+        background: #c98b22;
+    }
+
+    /* Second level */
+
+    .second-level {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .sub-group {
+        width: 100%;
+    }
+
+    .sub-members {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    /* Auditors */
+
+    .auditors-row {
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+
+    .auditors-row .org-member {
+        padding-left: 80px;
+    }
+
+    /* Accountant */
+
+    .accountant-card {
+        width: 100%;
+        max-width: 395px;
+    }
+
+    .connector-middle {
+        width: 2px;
+        height: 45px;
+        background: #c98b22;
+        border: none;
+    }
+
+    .connector-middle::before {
+        display: none;
+    }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 500px) {
+
+    .top-level {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .top-level .org-member {
+        min-height: 195px;
+    }
+
+    .second-level {
+        padding: 0;
+    }
+
+    .sub-members {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .small-card {
+        max-width: 300px;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .auditors-row {
+        grid-template-columns: 1fr;
+        padding: 0;
+    }
+
+    .auditors-row .org-member {
+        max-width: 320px;
+        width: 100%;
+        margin: auto;
+    }
+
+    .section-title h2 {
+        font-size: 16px;
+    }
+}
+
+/* =========================================================
+   REMOVE ALL ORGANIZATION CHART LINES
+========================================================= */
+
+/* Remove top horizontal line */
+.top-level::before {
+    display: none !important;
+}
+
+/* Remove vertical lines above top cards */
+.top-level .org-member::before {
+    display: none !important;
+}
+
+/* Remove top connector */
+.connector-top {
+    display: none !important;
+}
+
+.connector-top::before,
+.connector-top::after {
+    display: none !important;
+}
+
+/* Remove middle connector */
+.connector-middle {
+    display: none !important;
+}
+
+.connector-middle::before {
+    display: none !important;
+}
+
+/* Remove bottom connector */
+.connector-bottom {
+    display: none !important;
+}
+
+/* Remove any remaining connector borders/backgrounds */
+.connector-top,
+.connector-middle,
+.connector-bottom {
+    border: none !important;
+    background: none !important;
+}
+/* =========================================================
+   SPACING AFTER REMOVING CONNECTOR LINES
+========================================================= */
+
+/* Space between TOP LEVEL cards and group titles */
+.second-level {
+    margin-top: 65px;
+}
+
+/* Space between group title and its cards */
+.sub-title {
+    margin-bottom: 32px;
+}
+
+/* Space between second-level cards and AUDITOR title */
+.section-title {
+    margin-top: 65px;
+    margin-bottom: 32px;
+}
+
+/* Keep auditor title clearly separated from cards above */
+.section-title h2 {
+    position: relative;
+    z-index: 2;
+}
+
+/* Space between auditor cards and accountant section */
+.section-title_a {
+    margin-top: 55px;
+    margin-bottom: 32px;
+}
+/* =========================================================
+   MATCH CARD SIZES BY HIERARCHY LEVEL
+========================================================= */
+
+/* =========================================================
+   LEVEL 1 — CHAIRMAN / SECRETARY / TREASURER
+   All 3 cards exactly the same size
+========================================================= */
+
+.top-level {
+    align-items: stretch;
+}
+
+.top-level .org-member {
+    width: 100%;
+    height: 300px;
+    min-height: 300px;
+    max-height: 300px;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   LEVEL 2 — VICE CHAIRMAN / ASSISTANT SECRETARY
+   All 4 cards exactly the same size
+========================================================= */
+
+.sub-members {
+    align-items: stretch;
+}
+
+.sub-members .small-card {
+    width: 100%;
+    height: 270px;
+    min-height: 220px;
+    max-height: 220px;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   LEVEL 3 — AUDITORS
+   All 4 auditor cards exactly the same size
+========================================================= */
+
+.auditors-row {
+    align-items: stretch;
+}
+
+.auditors-row .org-member {
+    width: 100%;
+    height: 120px;
+    min-height: 120px;
+    max-height: 120px;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   LEVEL 4 — ACCOUNTANT
+========================================================= */
+
+.accountant-card {
+    width: 395px;
+    height: 115px;
+    min-height: 115px;
+    max-height: 115px;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   KEEP TEXT INSIDE FIXED CARDS
+========================================================= */
+
+.top-level .org-member h3,
+.top-level .org-member p,
+.sub-members .small-card h3,
+.sub-members .small-card p,
+.auditors-row .org-member h3,
+.auditors-row .org-member p,
+.accountant-card h3,
+.accountant-card p {
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   SPACING BETWEEN LEVELS — NO LINES
+========================================================= */
+
+.second-level {
+    margin-top: 70px;
+}
+
+.sub-title {
+    margin-bottom: 30px;
+}
+
+.section-title {
+    margin-top: 70px;
+    margin-bottom: 30px;
+}
+
+.section-title_a {
+    margin-top: 60px;
+    margin-bottom: 30px;
+}
