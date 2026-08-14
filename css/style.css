@@ -874,3 +874,298 @@ footer a {
     color:#555;
     font-size:15px;
 }
+
+
+.management-row{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    flex-wrap:wrap;
+    margin-bottom:40px;
+}
+
+.group-card{
+    flex:1;
+    min-width:350px;
+    text-align:center;
+}
+
+.group-card h3{
+    margin-bottom:20px;
+    color:#8b0000;
+}
+
+.level-1{
+    max-width:300px;
+}
+
+.other-members{
+    margin-top:50px;
+}
+.top-row{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:40px;
+    align-items:start;
+}
+
+.branch{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.child-row{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    margin-top:35px;
+    position:relative;
+}
+
+.child-row::before{
+    content:"";
+    position:absolute;
+    top:-35px;
+    left:50%;
+    width:4px;
+    height:35px;
+    background:#d4af37;
+    transform:translateX(-50%);
+}
+
+.child-row::after{
+    content:"";
+    position:absolute;
+    top:-35px;
+    left:25%;
+    right:25%;
+    height:4px;
+    background:#d4af37;
+}
+
+@media(max-width:992px){
+
+    .top-row{
+        grid-template-columns:1fr;
+    }
+
+    .child-row{
+        flex-direction:column;
+    }
+
+    .child-row::after{
+        display:none;
+    }
+}
+/* ==================================================
+   Temple Opening Hours
+================================================== */
+
+.opening-hours-card{
+
+    background:#fffdf7;
+
+    border:3px solid #d4af37;
+
+    border-radius:18px;
+
+    padding:35px;
+
+    margin:40px auto;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.10);
+
+    text-align:center;
+
+}
+
+.opening-hours-card h2{
+
+    color:#8B0000;
+
+    margin-bottom:30px;
+
+    font-size:32px;
+
+}
+
+.opening-time-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:30px;
+
+    margin-bottom:25px;
+
+}
+
+.opening-box{
+
+    background:#fff;
+
+    border:2px solid #d4af37;
+
+    border-radius:15px;
+
+    padding:25px;
+
+}
+
+.opening-box h3{
+
+    color:#8B0000;
+
+    margin-bottom:15px;
+
+    font-size:24px;
+
+}
+
+.opening-box p{
+
+    font-size:20px;
+
+    line-height:1.8;
+
+    color:#444;
+
+}
+
+.opening-note{
+
+    background:#fff6db;
+
+    border-left:6px solid #d4af37;
+
+    border-radius:10px;
+
+    padding:18px;
+
+    font-size:18px;
+
+    color:#444;
+
+    margin-top:20px;
+
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.opening-hours-card{
+
+padding:20px;
+
+}
+
+.opening-hours-card h2{
+
+font-size:26px;
+
+}
+
+.opening-time-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.opening-box p{
+
+font-size:18px;
+
+}
+
+.opening-note{
+
+font-size:16px;
+
+}
+
+}
+
+
+/* ==========================================
+   Temple Services
+========================================== */
+
+.service-section{
+    margin:50px 0;
+}
+
+.service-card{
+    background:#fffdf7;
+    border:2px solid #d4af37;
+    border-radius:15px;
+    padding:35px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.service-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:18px;
+    margin-top:20px;
+}
+
+.service-item{
+    background:#fff;
+    border-left:5px solid #d4af37;
+    padding:16px 20px;
+    border-radius:10px;
+    font-size:18px;
+    font-weight:600;
+    color:#444;
+    transition:.3s;
+}
+
+.service-item:hover{
+    transform:translateY(-3px);
+    box-shadow:0 5px 15px rgba(0,0,0,.10);
+}
+
+.service-note{
+    margin-top:30px;
+    background:#fff5d8;
+    border-left:6px solid #8B0000;
+    padding:18px 20px;
+    border-radius:10px;
+    text-align:center;
+    font-size:18px;
+    line-height:1.7;
+    color:#444;
+}
+
+@media (max-width:768px){
+
+    .service-card{
+        padding:20px;
+    }
+
+    .service-grid{
+        grid-template-columns:1fr;
+    }
+
+    .service-item{
+        font-size:17px;
+    }
+
+    .service-note{
+        font-size:16px;
+    }
+
+}
+/* Table Heading - Left Align */
+.table-responsive th {
+    text-align: left;
+    padding-left: 24px;
+}
+
+/* Table Data - Center Align */
+.table-responsive td {
+    text-align: middle;
+}
