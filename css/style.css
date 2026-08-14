@@ -1980,3 +1980,134 @@ font-size:16px;
     margin-top: 60px;
     margin-bottom: 30px;
 }
+
+.site-branding {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.temple-logo {
+    width: 100px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 10%;
+    flex-shrink: 0;
+    border: 2px solid #d4af37;
+}
+
+.site-title-wrapper h1 {
+    margin: 0;
+}
+
+.site-title-wrapper p {
+    margin: 4px 0 0;
+}
+/* =========================================================
+   TEMPLE ANNOUNCEMENT MARQUEE
+========================================================= */
+
+.temple-marquee {
+    width: 100%;
+    height: 25px;
+    overflow: hidden;
+    position: relative;
+
+    background: #fff8e8;
+    border-bottom: 2px solid #c9a227;
+
+    display: flex;
+    align-items: center;
+
+    box-sizing: border-box;
+}
+
+/* Moving content */
+.marquee-track {
+    display: flex;
+    width: max-content;
+    align-items: center;
+
+    animation: templeMarquee 22s linear infinite;
+}
+
+/* Each announcement */
+.marquee-item {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+
+    font-family: "Noto Sans Tamil", "Latha", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+
+    padding-right: 120px;
+}
+
+/* Date */
+.marquee-date {
+    color: #8b0000;
+    font-weight: 700;
+}
+
+/* Tamil date */
+.marquee-tamil-date {
+    color: #6d3b00;
+}
+
+/* Day */
+.marquee-day {
+    color: #333;
+}
+
+/* Separators */
+.marquee-separator {
+    color: #c9a227;
+    font-weight: 700;
+    margin: 0 18px;
+}
+
+/* Announcement */
+.marquee-message {
+    color: #8b0000;
+}
+
+/* Highlight words */
+.marquee-message strong {
+    color: #c62828;
+    font-weight: 800;
+}
+
+/* =========================================================
+   MARQUEE ANIMATION
+========================================================= */
+
+@keyframes templeMarquee {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .temple-marquee {
+        height: 50px;
+    }
+
+    .marquee-item {
+        font-size: 16px;
+        padding-right: 80px;
+    }
+
+    .marquee-separator {
+        margin: 0 10px;
+    }
+}
