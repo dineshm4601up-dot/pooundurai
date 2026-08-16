@@ -10,6 +10,17 @@
     --white: #ffffff;
     --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     --border-radius: 8px;
+
+    /* Pre-JS fallback only — js/main.js measures the real rendered
+       header/marquee height on load and overwrites these instantly. */
+    --header-height: 86px;
+    --marquee-height: 44px;
+}
+
+@media (max-width: 600px) {
+    :root {
+        --marquee-height: 40px;
+    }
 }
 
 * {
@@ -40,6 +51,11 @@ body {
     flex-direction: column !important;
     min-height: 100vh;
     font-size: 16px;
+
+    /* header + marquee are position: fixed (see FIXED HEADER +
+       TEMPLE MARQUEE below), so page content needs this offset
+       to avoid rendering underneath them. */
+    padding-top: calc(var(--header-height) + var(--marquee-height));
 }
 
 a {
@@ -82,11 +98,24 @@ textarea {
     min-height: 120px;
 }
 
+/* =========================================================
+   FIXED HEADER + TEMPLE MARQUEE
+   header and .temple-marquee are both position: fixed so they
+   stay on screen together while the page scrolls. .temple-marquee
+   sits at top: var(--header-height) so there is no gap, and
+   body's padding-top (above) reserves the matching space so page
+   content never renders underneath either one. js/main.js measures
+   the real rendered heights and keeps the two CSS variables in
+   sync — no fixed pixel height is forced on the header itself.
+========================================================= */
+
 header {
     background-color: var(--primary);
     color: var(--white);
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    width: 100%;
     z-index: 1000;
     border-bottom: 4px solid var(--secondary);
     box-shadow: var(--shadow);
@@ -595,39 +624,6 @@ tr:hover {
 .table-inner-cell-alt { width: auto; border-bottom: 1px solid #eee; }
 .table-inner-cell-last { border-bottom: none; }
 
-.lightbox-modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.9);
-    z-index: 2000;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
-}
-
-.lightbox-modal.active {
-    display: flex;
-}
-
-.lightbox-content {
-    max-width: 90%;
-    max-height: 85vh;
-    border-radius: var(--border-radius);
-    border: 3px solid var(--secondary);
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-}
-
-.lightbox-close {
-    position: absolute;
-    top: 20px;
-    right: 35px;
-    color: var(--white);
-    font-size: 2.5rem;
-    font-weight: bold;
-    cursor: pointer;
-}
-
 footer {
     background-color: #0b0e2a;
     color: var(--white);
@@ -671,7 +667,10 @@ footer a {
         align-items: flex-start;
         width: 100%;
         position: absolute;
-        top: calc(100% + 0.25rem);
+        /* Starts below the header's own bottom border (100% + 0.25rem
+           of nav-container), then skips past the fixed marquee too so
+           the open dropdown never overlaps it. */
+        top: calc(100% + 0.25rem + var(--marquee-height));
         left: 0;
         right: 0;
         background-color: var(--primary);
@@ -684,17 +683,18 @@ footer a {
         pointer-events: none;
         visibility: hidden;
         transition: max-height 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
-        z-index: 1000;
+        /* Still above the marquee (900) even though it no longer overlaps it */
+        z-index: 1100;
     }
 
     nav ul.mobile-menu {
-        max-height: calc(100vh - 70px);
+        max-height: calc(100vh - var(--header-height) - var(--marquee-height));
         overflow-y: auto;
         overflow-x: hidden;
     }
 
     nav ul.show {
-        max-height: calc(100vh - 70px);
+        max-height: calc(100vh - var(--header-height) - var(--marquee-height));
         opacity: 1;
         pointer-events: auto;
         visibility: visible;
@@ -2005,30 +2005,43 @@ font-size:16px;
 }
 /* =========================================================
    TEMPLE ANNOUNCEMENT MARQUEE
+   (inserted automatically by js/main.js on every page)
 ========================================================= */
 
 .temple-marquee {
     width: 100%;
-    height: 25px;
+    max-width: 100%;
     overflow: hidden;
-    position: relative;
 
-    background: #fff8e8;
-    border-bottom: 2px solid #c9a227;
+    /* Fixed directly under the fixed header — see FIXED HEADER +
+       TEMPLE MARQUEE comment near the header rule. */
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    z-index: 900;
+
+    background: #0b1f4d;
+    border-bottom: 3px solid var(--secondary);
 
     display: flex;
     align-items: center;
 
+    padding: 0.55rem 0;
     box-sizing: border-box;
 }
 
-/* Moving content */
+/* Moving content (two identical copies placed back-to-back so
+   translating exactly -50% loops with no visible jump) */
 .marquee-track {
     display: flex;
     width: max-content;
     align-items: center;
 
-    animation: templeMarquee 22s linear infinite;
+    animation-name: templeMarquee;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-duration: var(--marquee-duration, 26s);
+    will-change: transform;
 }
 
 /* Each announcement */
@@ -2037,45 +2050,72 @@ font-size:16px;
     align-items: center;
     white-space: nowrap;
 
-    font-family: "Noto Sans Tamil", "Latha", sans-serif;
-    font-size: 20px;
+    font-family: 'Mukta Malar', 'Noto Sans Tamil', 'Latha', sans-serif;
+    font-size: 1.05rem;
     font-weight: 600;
+    color: #ffffff;
 
-    padding-right: 120px;
+    padding-right: 70px;
+}
+
+/* Leading "அடுத்த விசேஷ நாட்கள்" label */
+.marquee-lead {
+    color: var(--secondary);
+    font-weight: 700;
+}
+
+/* Event type label (🌑 அமாவாசை / 🌕 பௌர்ணமி / 🎉 திருவிழா) */
+.marquee-label {
+    color: var(--secondary);
+    font-weight: 700;
+    margin-right: 6px;
 }
 
 /* Date */
 .marquee-date {
-    color: #8b0000;
+    color: #ffffff;
     font-weight: 700;
 }
 
-/* Tamil date */
-.marquee-tamil-date {
-    color: #6d3b00;
+/* Tamil date / festival name / temple house */
+.marquee-tamil-date,
+.marquee-event-name,
+.marquee-house {
+    color: #f1d9a0;
 }
 
 /* Day */
 .marquee-day {
-    color: #333;
+    color: #cfd8ff;
 }
 
 /* Separators */
 .marquee-separator {
-    color: #c9a227;
+    color: var(--secondary);
     font-weight: 700;
-    margin: 0 18px;
+    margin: 0 14px;
 }
 
-/* Announcement */
+/* Friendly "no upcoming events" message */
 .marquee-message {
-    color: #8b0000;
+    color: #ffffff;
+    padding-right: 0;
 }
 
-/* Highlight words */
-.marquee-message strong {
-    color: #c62828;
-    font-weight: 800;
+/* Static (non-scrolling) state used when there is nothing to show */
+.temple-marquee.marquee-static {
+    justify-content: center;
+}
+
+.marquee-static .marquee-track {
+    animation: none !important;
+}
+
+/* Pause on hover, desktop pointer devices only */
+@media (hover: hover) and (pointer: fine) {
+    .temple-marquee:hover .marquee-track {
+        animation-play-state: paused;
+    }
 }
 
 /* =========================================================
@@ -2099,15 +2139,421 @@ font-size:16px;
 @media (max-width: 600px) {
 
     .temple-marquee {
-        height: 50px;
+        padding: 0.5rem 0;
     }
 
     .marquee-item {
-        font-size: 16px;
-        padding-right: 80px;
+        font-size: 0.85rem;
+        padding-right: 40px;
     }
 
     .marquee-separator {
-        margin: 0 10px;
+        margin: 0 8px;
+    }
+}
+
+/* =========================================================
+   GALLERY IMAGE SLIDESHOW
+   (behaviour driven by js/main.js — .gallery-slideshow,
+   .gallery-slides, .gallery-slide, .gallery-prev, .gallery-next,
+   .gallery-dots)
+
+   .gallery-slides has no fixed height — js/main.js measures each
+   image's natural width/height and sets an inline px height that
+   matches the ACTIVE slide's own aspect ratio, so no image is ever
+   cropped or stretched. The min-height/max-height below are only a
+   safety net (before JS runs, and to cap extreme portrait photos).
+========================================================= */
+
+.gallery-slideshow {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    margin: 30px auto;
+    box-sizing: border-box;
+
+    border-radius: 18px;
+    overflow: hidden;
+    background: #111;
+    box-shadow: var(--shadow);
+    border: 3px solid var(--secondary);
+}
+
+.gallery-slides {
+    position: relative;
+    width: 100%;
+    min-height: 260px;
+    max-height: 80vh;
+    transition: height 0.5s ease;
+}
+
+/* Individual slide (stacked, cross-faded) */
+
+.gallery-slide {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.gallery-slide.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.gallery-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Previous / Next buttons */
+
+.gallery-prev,
+.gallery-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 46px;
+    height: 46px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(0, 0, 0, 0.55);
+    color: var(--white);
+
+    font-size: 1.5rem;
+    line-height: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 10;
+    transition: background 0.3s ease;
+}
+
+.gallery-prev:hover,
+.gallery-next:hover {
+    background: var(--primary);
+}
+
+.gallery-prev {
+    left: 16px;
+}
+
+.gallery-next {
+    right: 16px;
+}
+
+/* Dots */
+
+.gallery-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    max-width: 1400px;
+    margin: 1.2rem auto 0;
+}
+
+.gallery-dot {
+    width: 11px;
+    height: 11px;
+    padding: 0;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #ddd;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+
+    cursor: pointer;
+    transition: width 0.3s ease, background 0.3s ease;
+}
+
+.gallery-dot.active {
+    width: 28px;
+    border-radius: 10px;
+    background: var(--primary);
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .gallery-slideshow {
+        border-radius: 14px;
+    }
+
+    .gallery-slides {
+        min-height: 220px;
+        max-height: 70vh;
+    }
+
+    .gallery-prev,
+    .gallery-next {
+        width: 40px;
+        height: 40px;
+        font-size: 1.25rem;
+    }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .gallery-slideshow {
+        width: 100%;
+        margin: 20px auto;
+        border-radius: 12px;
+    }
+
+    .gallery-slides {
+        min-height: 180px;
+        max-height: 60vh;
+    }
+
+    .gallery-prev,
+    .gallery-next {
+        width: 36px;
+        height: 36px;
+        font-size: 1.1rem;
+    }
+
+    .gallery-prev {
+        left: 10px;
+    }
+
+    .gallery-next {
+        right: 10px;
+    }
+
+    .gallery-dots {
+        margin-top: 1rem;
+        gap: 8px;
+    }
+
+    .gallery-dot {
+        width: 9px;
+        height: 9px;
+    }
+
+    .gallery-dot.active {
+        width: 22px;
+    }
+}
+
+@media (max-width: 400px) {
+
+    .gallery-slides {
+        min-height: 150px;
+    }
+
+    .gallery-prev,
+    .gallery-next {
+        width: 30px;
+        height: 30px;
+        font-size: 0.95rem;
+    }
+
+    .gallery-prev {
+        left: 6px;
+    }
+
+    .gallery-next {
+        right: 6px;
+    }
+}
+
+/* =========================================================
+   POOJA DETAILS - INTERACTIVE CARDS
+   (behaviour driven by js/main.js — .pooja-tab, .pooja-description;
+   selection is toggled via the .active class on data-pooja pairs)
+========================================================= */
+
+.pooja-details-section {
+    display: flex;
+    align-items: stretch;
+    gap: 1.5rem;
+
+    width: 100%;
+    max-width: 1150px;
+    margin: 0 auto 2.5rem;
+    box-sizing: border-box;
+}
+
+.pooja-tabs {
+    flex: 0 0 33%;
+    max-width: 33%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.pooja-tab {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+
+    width: 100%;
+    min-width: 0;
+    text-align: left;
+
+    background: var(--white);
+    border: none;
+    border-left: 4px solid var(--secondary);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    padding: 0.7rem 1rem;
+
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-dark);
+
+    cursor: pointer;
+    transition: background 0.25s ease, color 0.25s ease, transform 0.2s ease;
+}
+
+.pooja-tab:hover {
+    background: #fff6e6;
+    transform: translateX(3px);
+}
+
+.pooja-tab.active {
+    background: var(--primary);
+    border-left-color: var(--secondary);
+    color: var(--white);
+}
+
+.pooja-tab-icon {
+    flex: 0 0 auto;
+    font-size: 1.15rem;
+    line-height: 1;
+}
+
+.pooja-tab-text {
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.pooja-description-panel {
+    flex: 1;
+    min-width: 0;
+    position: relative;
+
+    display: grid;
+
+    background: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    border-top: 4px solid var(--secondary);
+    padding: 1.8rem 2rem;
+    box-sizing: border-box;
+}
+
+/* All descriptions share the same grid cell so the panel height
+   never jumps between tabs; only the active one is visible. */
+.pooja-description {
+    grid-column: 1;
+    grid-row: 1;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(6px);
+    pointer-events: none;
+    transition: opacity 0.35s ease, transform 0.35s ease, visibility 0.35s ease;
+}
+
+.pooja-description.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.pooja-description-title {
+    color: var(--primary);
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    overflow-wrap: break-word;
+}
+
+.pooja-description-text p {
+    font-size: 1.02rem;
+    line-height: 1.9;
+    color: var(--text-dark);
+    margin-bottom: 0.9rem;
+    overflow-wrap: break-word;
+}
+
+.pooja-description-text p:last-child {
+    margin-bottom: 0;
+}
+
+/* Tablet / mobile: compact 2-column tab grid above the panel */
+@media (max-width: 800px) {
+
+    .pooja-details-section {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .pooja-tabs {
+        flex: none;
+        max-width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.6rem;
+    }
+
+    .pooja-tab {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3rem;
+        padding: 0.65rem 0.8rem;
+        border-left-width: 3px;
+    }
+
+    .pooja-description-panel {
+        padding: 1.4rem 1.3rem;
+    }
+
+    .pooja-description-title {
+        font-size: 1.2rem;
+    }
+
+    .pooja-description-text p {
+        font-size: 0.98rem;
+        line-height: 1.8;
+    }
+}
+
+@media (max-width: 420px) {
+
+    .pooja-tab {
+        font-size: 0.85rem;
+        padding: 0.55rem 0.65rem;
+    }
+
+    .pooja-tab-icon {
+        font-size: 1.05rem;
     }
 }

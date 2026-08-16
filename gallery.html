@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>திவ்ய தரிசனம் - ஸ்ரீ பெரியகாண்டி அம்மன் கோவில்</title>
+    <title>திவ்ய தரிசனம் - ஸ்ரீ பெரியகாண்டியம்மன் கோவில்</title>
     <link rel="stylesheet" href="css/style.css">
     
     <!-- Google Fonts -->
@@ -17,10 +17,10 @@
     <header>
         <div class="nav-container">
                         <div class="site-branding">
-    <img src="assets/temple-2.jpg" alt="ஸ்ரீ பெரியகாண்டி அம்மன் கோவில்" class="temple-logo">
+    <img src="assets/temple-2.jpg" alt="ஸ்ரீ பெரியகாண்டியம்மன் கோவில்" class="temple-logo">
 
     <div class="site-title-wrapper">
-        <h4>ஸ்ரீ பெரியகாண்டி அம்மன் கோவில்</h4>
+        <h4>ஸ்ரீ பெரியகாண்டியம்மன் கோவில்</h4>
         <p>அவல்பூந்துறை, ஈரோடு</p>
     </div>
 </div>
@@ -44,42 +44,72 @@
             <h2>அம்பாள் திவ்ய தரிசனம்</h2>
         </div>
 
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="assets/temple-1.jpg" alt="கோவில் ராஜகோபுரம்" loading="lazy" onerror="this.onerror=null; this.parentElement.innerText='கோவில் புகைப்படம் 1';">
-                <div class="gallery-caption"></div>
-            </div>
+<!-- =========================
+     TEMPLE IMAGE SLIDESHOW
+     (behaviour handled by js/main.js)
+========================= -->
 
-            <div class="gallery-item">
-                <img src="assets/temple-2.jpg" alt="ஸ்ரீ பெரியகாண்டி அம்மன் அலங்காரம்" loading="lazy" onerror="this.onerror=null; this.parentElement.innerText='கோவில் புகைப்படம் 2';">
-                <div class="gallery-caption"></div>
-            </div>
+<div class="gallery-slideshow">
 
-            <div class="gallery-item">
-                <img src="assets/temple-3.jpg" alt="திருக்கோவில் மூலஸ்தானம்" loading="lazy" onerror="this.onerror=null; this.parentElement.innerText='கோவில் புகைப்படம் 3';">
-                <div class="gallery-caption"></div>
-            </div>
+    <button class="gallery-prev"
+            type="button"
+            aria-label="முந்தைய புகைப்படம்">
+        ❮
+    </button>
 
-            <div class="gallery-item">
-                <img src="assets/temple-4.jpg" alt="திருத்தேர் (ரதம்) உற்சவம்" loading="lazy" onerror="this.onerror=null; this.parentElement.innerText='கோவில் புகைப்படம் 4';">
-                <div class="gallery-caption"></div>
-            </div>
+    <div class="gallery-slides">
 
-            <div class="gallery-item">
-                <img src="assets/temple-5.jpg" alt="மஹா கும்பாபிஷேகம் விழா" loading="lazy" onerror="this.onerror=null; this.parentElement.innerText='';">
-                <div class="gallery-caption"></div>
-            </div>
+        <div class="gallery-slide active">
+            <img
+                src="assets/temple-1.jpg"
+                alt="கோவில் ராஜகோபுரம்">
         </div>
-    </main>
 
-    <!-- Lightbox Modal -->
-    <div id="lightbox" class="lightbox-modal">
-        <span class="lightbox-close">&times;</span>
-        <img id="lightbox-img" class="lightbox-content" src="" alt="Full View">
+        <div class="gallery-slide">
+            <img
+                src="assets/temple-2.jpg"
+                alt="ஸ்ரீ பெரியகாண்டியம்மன் அலங்காரம்"
+                loading="lazy">
+        </div>
+
+        <div class="gallery-slide">
+            <img
+                src="assets/temple-3.jpg"
+                alt="திருக்கோவில் மூலஸ்தானம்"
+                loading="lazy">
+        </div>
+
+        <div class="gallery-slide">
+            <img
+                src="assets/temple-4.jpg"
+                alt="திருத்தேர் ரதம் உற்சவம்"
+                loading="lazy">
+        </div>
+
+        <div class="gallery-slide">
+            <img
+                src="assets/temple-5.jpg"
+                alt="மஹா கும்பாபிஷேகம் விழா"
+                loading="lazy">
+        </div>
+
     </div>
 
+    <button class="gallery-next"
+            type="button"
+            aria-label="அடுத்த புகைப்படம்">
+        ❯
+    </button>
+
+</div>
+
+<div class="gallery-dots"
+     aria-label="புகைப்பட வழிசெலுத்தல்">
+</div>
+    </main>
+
     <footer>
-        <p><strong>ஸ்ரீ பெரியகாண்டி அம்மன் கோவில்</strong> - அவல்பூந்துறை, ஈரோடு</p>
+        <p><strong>ஸ்ரீ பெரியகாண்டியம்மன் கோவில்</strong> - அவல்பூந்துறை, ஈரோடு</p>
         <p>&copy; <span id="current-year">2026</span>  அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.</p>
         <p><small>Developed by <a href="https://alphainfotech.org" target="_blank" rel="noopener">alphainfotech.org</a></small></p>
     </footer>

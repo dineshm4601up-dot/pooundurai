@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>பூஜை & விசேஷ நாட்கள் - ஸ்ரீ பெரியகாண்டி அம்மன் கோவில்</title>
+    <title>பூஜை & விசேஷ நாட்கள் - ஸ்ரீ பெரியகாண்டியம்மன் கோவில்</title>
     <link rel="stylesheet" href="css/style.css">
     
     <!-- Google Fonts -->
@@ -17,10 +17,10 @@
     <header>
         <div class="nav-container">
                         <div class="site-branding">
-    <img src="assets/temple-2.jpg" alt="ஸ்ரீ பெரியகாண்டி அம்மன் கோவில்" class="temple-logo">
+    <img src="assets/temple-2.jpg" alt="ஸ்ரீ பெரியகாண்டியம்மன் கோவில்" class="temple-logo">
 
     <div class="site-title-wrapper">
-        <h4>ஸ்ரீ பெரியகாண்டி அம்மன் கோவில்</h4>
+        <h4>ஸ்ரீ பெரியகாண்டியம்மன் கோவில்</h4>
         <p>அவல்பூந்துறை, ஈரோடு</p>
     </div>
 </div>
@@ -41,23 +41,126 @@
 
     <main class="container">
         <!-- Daily Pooja Section -->
+    
+
+        <!-- Special Pooja Details (tabs + description panel) -->
         <div class="page-title">
-            <h2>தினமும் நடைபெறும் பூஜை நேரங்கள் </h2>
+            <h2>சிறப்பு பூஜைகள் மற்றும் விழாக்கள்</h2>
         </div>
-        <div class="grid-3-row">
-            <div class="timing-card">
-                <h3>காலை பூஜை</h3>
-                <div class="time">07:00 AM</div>
+
+        <section class="pooja-details-section">
+
+            <div class="pooja-tabs" role="tablist" aria-label="சிறப்பு பூஜைகள்">
+
+                <button class="pooja-tab active" type="button" data-pooja="amavasai" role="tab" aria-selected="true">
+                    <span class="pooja-tab-icon">🌑</span>
+                    <span class="pooja-tab-text">அமாவாசை பூஜை</span>
+                </button>
+
+                <button class="pooja-tab" type="button" data-pooja="pournami" role="tab" aria-selected="false">
+                    <span class="pooja-tab-icon">🌕</span>
+                    <span class="pooja-tab-text">பௌர்ணமி பூஜை</span>
+                </button>
+
+                <button class="pooja-tab" type="button" data-pooja="navarathri" role="tab" aria-selected="false">
+                    <span class="pooja-tab-icon">🪔</span>
+                    <span class="pooja-tab-text">நவராத்திரி பூஜை</span>
+                </button>
+
+                <button class="pooja-tab" type="button" data-pooja="chithirai" role="tab" aria-selected="false">
+                    <span class="pooja-tab-icon">🌿</span>
+                    <span class="pooja-tab-text">சித்திரை சிறப்பு பூஜை</span>
+                </button>
+
+                <button class="pooja-tab" type="button" data-pooja="aadi" role="tab" aria-selected="false">
+                    <span class="pooja-tab-icon">🎋</span>
+                    <span class="pooja-tab-text">ஆடி பௌர்ணமி பூஜை</span>
+                </button>
+
+                <button class="pooja-tab" type="button" data-pooja="karthigai" role="tab" aria-selected="false">
+                    <span class="pooja-tab-icon">🔥</span>
+                    <span class="pooja-tab-text">திருக்கார்த்திகை பூஜை</span>
+                </button>
+
+                <button class="pooja-tab" type="button" data-pooja="sivarathiri" role="tab" aria-selected="false">
+                    <span class="pooja-tab-icon">🔱</span>
+                    <span class="pooja-tab-text">மாசி சிவராத்திரி</span>
+                </button>
+
+                <button class="pooja-tab" type="button" data-pooja="kumbabishekam" role="tab" aria-selected="false">
+                    <span class="pooja-tab-icon">🛕</span>
+                    <span class="pooja-tab-text">கும்பாபிஷேக ஆண்டு விழா</span>
+                </button>
+
             </div>
-            <div class="timing-card">
-                <h3>மதியம் பூஜை</h3>
-                <div class="time">01:00 PM</div>
+
+            <div class="pooja-description-panel">
+
+                <div class="pooja-description active" data-pooja="amavasai">
+                    <h3 class="pooja-description-title">🌑 அமாவாசை பூஜை</h3>
+                    <div class="pooja-description-text">
+                        <p>அமாவாசை பூஜை அன்று காலை அபிஷேகத்துடன் ஆரம்பித்து மதியம் 1 மணியளவில் மஹா தீபாராதனை மற்றும் இரவு 7.00 மணிக்கு ரத ஓட்டம் நடைபெற்று வருகிறது.</p>
+                        <p>இந்த பூஜையை ஒவ்வொரு கோயில் வீட்டு பூசாரியார் மற்றும் அவரைச் சார்ந்த கோயில் வீட்டு அண்ணன்மார்கள் இச்செலவை ஏற்று நடத்தி வருகிறார்கள்.</p>
+                    </div>
+                </div>
+
+                <div class="pooja-description" data-pooja="pournami">
+                    <h3 class="pooja-description-title">🌕 பௌர்ணமி பூஜை</h3>
+                    <div class="pooja-description-text">
+                        <p>பௌர்ணமி அன்று காலை 5 மணிக்கு அபிஷேகத்துடன் பூஜை ஆரம்பித்து மாலை 5.30 மணியளவில் தாய்மார்களின் குத்துவிளக்கு பூஜையும், ரத ஓட்டமும், ஊஞ்சல் பாட்டும், அதைத் தொடர்ந்து சிறப்பு பூஜையும், பிரசாதம் வழங்கியும் அன்னதானமும் நடைபெற்று வருகிறது.</p>
+                        <p>நமது கோயிலில் ரதம் ஓட்டுபவர்களுக்கு நன்கொடையாக ஆயிரம் ரூபாய் பெற்றுக்கொண்டு பரிவட்டம் கட்டி சாமி பிரசாதம் வழங்கப்படுகிறது.</p>
+                    </div>
+                </div>
+
+                <div class="pooja-description" data-pooja="navarathri">
+                    <h3 class="pooja-description-title">🪔 நவராத்திரி பூஜை</h3>
+                    <div class="pooja-description-text">
+                        <p>ஒவ்வொரு ஆண்டும் நவராத்திரி பூஜையானது 9 நாட்கள் நவராத்திரி கொலு வைத்து தினந்தோறும் சிறப்பான முறையில் நெய்வேத்தியம் படைத்து சிறப்பு பூஜையும், பிரசாதம் வழங்கியும் அன்னதானமும் நடைபெற்று வருகிறது.</p>
+                    </div>
+                </div>
+
+                <div class="pooja-description" data-pooja="chithirai">
+                    <h3 class="pooja-description-title">🌿 சித்திரை சிறப்பு பூஜை</h3>
+                    <div class="pooja-description-text">
+                        <p>இத்திருக்கோயிலில் சித்திரை மாதம் 1ம் நாள் அன்று ஸ்ரீ பெரியகாண்டியம்மனுக்கு கனி வகைகளுடன் அலங்காரம் செய்து சிறப்பான பூஜை நடைபெறும்.</p>
+                        <p>சித்திரா பௌர்ணமி அன்று 1008 விளக்கு பூஜையும், தாய்மார்களின் குத்துவிளக்கு பூஜையும் நடைபெறும். நமது அம்பாளுக்கு மிகச்சிறப்பாக அலங்காரம் செய்யப்படும்.</p>
+                    </div>
+                </div>
+
+                <div class="pooja-description" data-pooja="aadi">
+                    <h3 class="pooja-description-title">🎋 ஆடி பௌர்ணமி பூஜை</h3>
+                    <div class="pooja-description-text">
+                        <p>ஆடி பௌர்ணமி அன்று ஸ்ரீ பெரியகாண்டியம்மனுக்கு சிறப்பான வளையல் அலங்கார பூஜை செய்யப்பட்டு வருகிறது. இந்நாளில் அம்மனுக்கு பல வண்ண வளையல்களால் அலங்காரம் செய்து, சிறப்பு அபிஷேகம், அர்ச்சனை மற்றும் தீபாராதனை நடைபெறுகிறது.</p>
+                    </div>
+                </div>
+
+                <div class="pooja-description" data-pooja="karthigai">
+                    <h3 class="pooja-description-title">🔥 திருக்கார்த்திகை பூஜை</h3>
+                    <div class="pooja-description-text">
+                        <p>ஐப்பசி பௌர்ணமி அன்று நமது அம்பாளுக்கு கனி வகை அணிவித்து சிறப்பான பூஜை செய்யப்படுகிறது.</p>
+                        <p>மேலும் திருக்கார்த்திகை பௌர்ணமி பூஜை அன்று நமது திருக்கோயில் வளாகத்தில் அண்ணாமலையார் தீபம் என்னும் திருக்கோடி விளக்கு ஏற்றி, 1008 விளக்கு பூஜையும், சிறப்பான பூ அலங்காரமும் செய்து, நாதசுரம் வாசிக்க, தாய்மார்களின் குத்துவிளக்கு பூஜை அம்பாளுக்கு மிகச்சிறப்பான முறையில் நடைபெற்றது.</p>
+                    </div>
+                </div>
+
+                <div class="pooja-description" data-pooja="sivarathiri">
+                    <h3 class="pooja-description-title">🔱 மாசி சிவராத்திரி</h3>
+                    <div class="pooja-description-text">
+                        <p>மாசி மாதம் வரும் சிவராத்திரிக்கு முதல் நாள் மதியம் 3 மணியளவில் கோயிலில் உள்ள ஆயுதங்களை எடுத்து காவேரி ஆற்றங்கரை சென்று தீர்த்தம் முத்தரித்து பூஜை செய்து, மேளதாளத்துடன் எடுத்து வந்து சிவராத்திரி அதிகாலை 5 மணியளவில் அனைத்து தெய்வங்களுக்கும் அபிஷேகம் செய்து பல்லயம் படைத்து பூஜை செய்யப்படுகிறது.</p>
+                    </div>
+                </div>
+
+                <div class="pooja-description" data-pooja="kumbabishekam">
+                    <h3 class="pooja-description-title">🛕 கும்பாபிஷேக ஆண்டு விழா</h3>
+                    <div class="pooja-description-text">
+                        <p>ஒவ்வொரு ஆண்டும் தை மாதத்தில் ஞாயிற்றுக்கிழமை அன்று கும்பாபிஷேக ஆண்டு விழா நடைபெறுகிறது.</p>
+                        <p>அன்று காலை கோமாதா பூஜையுடன் சிறப்பாக ஆரம்பிக்கப்பட்டு, விநாயகர் வழிபாடு, கலசபூஜை, 108 சங்காபிஷேகம் மற்றும் 108 பால் குட அபிஷேகத்துடன் நமது அம்பாளுக்கு தங்கக் கவசம் அணிவித்து மிகச்சிறப்பான அலங்காரம் செய்து பூஜை நடைபெறுகிறது.</p>
+                        <p>அன்னதானம் காலை முதல் நடைபெறுகிறது. அன்று இரவு ரத ஓட்டம் நடைபெறுகிறது.</p>
+                    </div>
+                </div>
+
             </div>
-            <div class="timing-card">
-                <h3>இரவு பூஜை</h3>
-                <div class="time">07:00 PM</div>
-            </div>
-        </div>
+
+        </section>
 
         <!-- 2026 Special Days -->
         <div class="page-title">
@@ -70,7 +173,7 @@
                 <span>🌑</span> அமாவாசை நாட்கள்
             </div>
                <div class="table-responsive">
-        <table>
+        <table id="amavasai-table">
             <thead>
     <tr>
         <th>தேதி</th>
@@ -184,7 +287,7 @@
                 <span>🌕</span> பௌர்ணமி நாட்கள்
             </div>
             <div class="table-responsive">
-        <table>
+        <table id="pournami-table">
             <thead>
 <tr>
     <th>தேதி</th>
@@ -271,10 +374,54 @@
         </table>
     </div>
         </div>
+
+        <!-- 3. Festival / Special Days Table -->
+        <!--
+            திருவிழா / சிறப்பு நாட்கள் அட்டவணை.
+            புதிய திருவிழா நாட்களை சேர்க்க, கீழே ஒரு <tr> row-ஐ இதே வடிவத்தில் சேர்க்கவும்:
+
+            <tr>
+                <td>01.09.2026</td>
+                <td>விநாயகர் சதுர்த்தி</td>
+                <td>ஆவணி - ...</td>
+                <td>செவ்வாய்</td>
+            </tr>
+
+            இந்த அட்டவணையே marquee-க்கான ஒரே தரவு மூலம் (single source of truth).
+            main.js-ல் இந்த தேதிகளை நகல் எடுக்க வேண்டாம்.
+        -->
+        <div class="table-container">
+            <div class="table-heading">
+                <span>🎉</span> திருவிழா / சிறப்பு நாட்கள்
+            </div>
+            <div class="table-responsive">
+        <table id="festival-table">
+            <thead>
+<tr>
+    <th>தேதி</th>
+    <th>நிகழ்வு</th>
+    <th>தமிழ் தேதி</th>
+    <th>கிழமை</th>
+</tr>
+</thead>
+
+            <tbody>
+                  <tr>
+                <td>01.02.2026</td>
+                <td>கும்பாபிஷேக ஆண்டு விழா</td>
+                <td>தை- 18 </td>
+                <td>ஞாயிறு</td>
+            </tr>
+
+
+</tbody>
+        </table>
+    </div>
+        </div>
     </main>
 
     <footer>
-        <p><strong>ஸ்ரீ பெரியகாண்டி அம்மன் கோவில்</strong> - அவல்பூந்துறை, ஈரோடு</p>
+        <p><strong>ஸ்ரீ பெரியகாண்டியம்மன் கோவில்</strong> - அவல்பூந்துறை, ஈரோடு</p>
         <p>&copy; <span id="current-year">2026</span>  அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.</p>
         <p><small>Developed by <a href="https://alphainfotech.org" target="_blank" rel="noopener">alphainfotech.org</a></small></p>
     </footer>
