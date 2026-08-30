@@ -1,0 +1,2562 @@
+
+
+:root {
+    --primary: #8b0000;
+    --secondary: #d4af37;
+    --accent: #e67e22;
+    --bg-light: #fffcf5;
+    --text-dark: #222222;
+    --text-muted: #666666;
+    --white: #ffffff;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --border-radius: 8px;
+
+    /* Pre-JS fallback only — js/main.js measures the real rendered
+       header/marquee height on load and overwrites these instantly. */
+    --header-height: 86px;
+    --marquee-height: 44px;
+}
+
+@media (max-width: 600px) {
+    :root {
+        --marquee-height: 40px;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+html, body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-mukta-malar), system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    line-height: 1.7;
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 100vh;
+    font-size: 16px;
+
+    /* header + marquee are position: fixed (see FIXED HEADER +
+       TEMPLE MARQUEE below), so page content needs this offset
+       to avoid rendering underneath them. */
+    padding-top: calc(var(--header-height) + var(--marquee-height));
+}
+
+a {
+    color: inherit;
+}
+
+img, iframe, video, embed, object {
+    max-width: 100% !important;
+}
+
+img {
+    display: block;
+    height: auto;
+}
+
+iframe {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 450px !important;
+    border: 0 !important;
+}
+
+button, input, select, textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    min-height: 44px;
+}
+
+textarea {
+    min-height: 120px;
+}
+
+/* =========================================================
+   FIXED HEADER + TEMPLE MARQUEE
+   header and .temple-marquee are both position: fixed so they
+   stay on screen together while the page scrolls. .temple-marquee
+   sits at top: var(--header-height) so there is no gap, and
+   body's padding-top (above) reserves the matching space so page
+   content never renders underneath either one. js/main.js measures
+   the real rendered heights and keeps the two CSS variables in
+   sync — no fixed pixel height is forced on the header itself.
+========================================================= */
+
+header {
+    background-color: var(--primary);
+    color: var(--white);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 4px solid var(--secondary);
+    box-shadow: var(--shadow);
+}
+
+.nav-container {
+    width: min(1200px, 92%) !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 1rem 0 !important;
+    position: relative !important;
+}
+
+.brand-logo h1 {
+    font-size: 1.35rem;
+    color: var(--secondary);
+    font-weight: 700;
+}
+
+.brand-logo p {
+    font-size: 0.85rem;
+    opacity: 0.9;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 1.25rem;
+    align-items: center;
+}
+
+nav a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.35rem 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+nav a:hover,
+nav a.active {
+    color: var(--secondary);
+}
+
+nav a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--secondary);
+}
+
+.mobile-menu-btn {
+    display: none;
+    border: none;
+    background: none;
+    color: var(--secondary);
+    font-size: 1.8rem;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+main {
+    flex: 1;
+}
+
+.container {
+    width: min(1200px, 92%) !important;
+    margin: 0 auto !important;
+    padding: 3rem 0 !important;
+}
+
+.page-title {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.page-title h2 {
+    font-size: 2.2rem;
+    color: var(--primary);
+    display: inline-block;
+}
+
+.page-title h2::after {
+    content: '❋';
+    display: block;
+    font-size: 1.2rem;
+    color: var(--secondary);
+    margin-top: 0.2rem;
+}
+
+.hero {
+    background: linear-gradient(rgba(139, 0, 0, 0.8), rgba(0, 0, 0, 0.75)),
+                url('/assets/temple-2.jpg') center/cover no-repeat;
+    color: var(--white);
+    text-align: center;
+    padding: clamp(3rem, 6vw, 6rem) 1.5rem;
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+    color: var(--secondary);
+    margin-bottom: 0.8rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin: 0 auto 2rem;
+    max-width: 700px;
+}
+
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    background-color: var(--secondary);
+    color: var(--primary);
+    padding: 0.8rem 1.6rem;
+    border-radius: 30px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+}
+
+.btn-primary:hover {
+    background-color: #f1c40f;
+    transform: translateY(-2px);
+}
+
+.card,
+.intro-card,
+.timeline-card,
+.map-section,
+.pattam-list,
+.country-item,
+.timing-card {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    border-top: 4px solid var(--secondary);
+}
+
+.grid-3,
+.grid-3-row,
+.gallery-grid,
+.country-grid,
+.grid-2 {
+    display: grid !important;
+    gap: 1.5rem !important;
+}
+
+.grid-3 {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+}
+
+.grid-3-row {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) !important;
+}
+
+.grid-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+
+.gallery-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.country-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.card {
+    padding: 2rem;
+}
+
+.timing-card {
+    text-align: center;
+    padding: 1.8rem 1rem;
+}
+
+.timing-card h3 {
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.timing-card .time {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--accent);
+}
+
+.table-container {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 2.5rem;
+    overflow: visible;
+    border-top: 4px solid var(--secondary);
+}
+
+.table-heading {
+    background-color: var(--primary);
+    color: var(--secondary);
+    padding: 1.2rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0;
+}
+
+.table-responsive table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto;
+}
+
+th, td {
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
+}
+
+th {
+    background-color: #fcf8f0;
+    color: var(--primary);
+    font-weight: 700;
+}
+
+tr:hover {
+    background-color: #fff9f0;
+}
+
+.country-item {
+    padding: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    border-left: 4px solid var(--secondary);
+    font-weight: 600;
+}
+
+.gallery-item {
+    height: 260px;
+    background-color: #f5efe6;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    border: 2px solid var(--secondary);
+    position: relative;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.08);
+}
+
+.gallery-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(139, 0, 0, 0.85);
+    color: var(--white);
+    padding: 0.6rem 1rem;
+    font-size: 0.95rem;
+    text-align: center;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover .gallery-caption {
+    transform: translateY(0);
+}
+
+.intro-card {
+    padding: 2.5rem;
+    font-size: 1.15rem;
+    line-height: 2;
+    margin-bottom: 3.5rem;
+}
+
+.timeline {
+    position: relative;
+    padding: 1rem 0;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--secondary);
+    border-radius: 2px;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 2.5rem;
+    padding-left: 60px;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-badge {
+    position: absolute;
+    left: 3px;
+    top: 0;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: var(--secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: 3px solid var(--secondary);
+    box-shadow: var(--shadow);
+    z-index: 2;
+}
+
+.timeline-card {
+    padding: 1.8rem;
+    border-left: 4px solid var(--primary);
+}
+
+.year-tag {
+    display: inline-block;
+    background-color: var(--primary);
+    color: var(--secondary);
+    padding: 0.2rem 0.8rem;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+}
+
+.event-title {
+    color: var(--primary);
+    font-size: 1.35rem;
+    margin-bottom: 0.8rem;
+    font-weight: 700;
+}
+
+.event-details {
+    list-style: none;
+    padding-left: 0;
+}
+
+.event-details li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+.event-details li::before {
+    content: '❖';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 0.85rem;
+}
+
+.date-highlight {
+    font-weight: bold;
+    color: var(--accent);
+}
+
+.pattam-list {
+    padding: 1.8rem;
+    list-style: none;
+    border-left: 5px solid var(--primary);
+}
+
+.pattam-list > li {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    color: var(--text-dark);
+}
+
+.pattam-list ul {
+    list-style: none;
+    margin-left: 1.8rem;
+    margin-top: 0.4rem;
+}
+
+.pattam-list ul li {
+    font-size: 1rem;
+    font-weight: normal;
+    color: var(--text-muted);
+    position: relative;
+    padding-left: 1.2rem;
+    margin-bottom: 0.3rem;
+}
+
+.pattam-list ul li::before {
+    content: '➔';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 0.85rem;
+}
+
+.map-section {
+    padding: 1.5rem;
+}
+
+.map-heading {
+    color: var(--primary);
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.map-container {
+    width: 100%;
+    height: 400px;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    border: 2px solid var(--secondary);
+}
+
+.map-link-btn {
+    display: inline-block;
+    margin-top: 1rem;
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 0.7rem 1.2rem;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.card-title {
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.contact-number {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.contact-note {
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.map-link-wrap {
+    text-align: center;
+}
+
+.table-col-8 { width: auto; }
+.table-col-10 { width: auto; }
+.table-col-25 { width: auto; }
+.table-col-32 { width: auto; }
+.table-col-35 { width: auto; }
+.table-col-45 { width: auto; }
+.table-col-50 { width: auto; }
+.table-nested { width: 100%; border: none; }
+.nested-cell { padding: 0; }
+.table-inner-cell { width: auto; border-bottom: 1px solid #eee; }
+.table-inner-cell-alt { width: auto; border-bottom: 1px solid #eee; }
+.table-inner-cell-last { border-bottom: none; }
+
+footer {
+    background-color: #0b0e2a;
+    color: var(--white);
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+    border-top: 4px solid var(--secondary);
+    margin-top: auto;
+}
+
+footer p {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+}
+
+footer a {
+    color: var(--secondary);
+    text-decoration: none;
+}
+
+@media (max-width: 900px) {
+    .grid-3,
+    .grid-3-row,
+    .gallery-grid,
+    .country-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid-2 {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 850px) {
+    .mobile-menu-btn {
+        display: inline-flex;
+    }
+
+    nav ul {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        position: absolute;
+        /* Starts below the header's own bottom border (100% + 0.25rem
+           of nav-container), then skips past the fixed marquee too so
+           the open dropdown never overlaps it. */
+        top: calc(100% + 0.25rem + var(--marquee-height));
+        left: 0;
+        right: 0;
+        background-color: var(--primary);
+        padding: 1rem 1.25rem 1.25rem;
+        box-shadow: var(--shadow);
+        border-radius: 0 0 var(--border-radius) var(--border-radius);
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        pointer-events: none;
+        visibility: hidden;
+        transition: max-height 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+        /* Still above the marquee (900) even though it no longer overlaps it */
+        z-index: 1100;
+    }
+
+    nav ul.mobile-menu {
+        max-height: calc(100vh - var(--header-height) - var(--marquee-height));
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    nav ul.show {
+        max-height: calc(100vh - var(--header-height) - var(--marquee-height));
+        opacity: 1;
+        pointer-events: auto;
+        visibility: visible;
+    }
+
+    nav a {
+        display: block;
+        padding: 0.7rem 0;
+        font-size: 1rem;
+    }
+
+    .hero h2 {
+        font-size: 1.8rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    h3 {
+        font-size: 1.3rem;
+    }
+
+    .nav-container {
+        width: min(100%, 92%);
+    }
+
+    .container {
+        width: min(100%, 92%);
+        padding: 2rem 0;
+    }
+
+    .page-title {
+        margin-bottom: 1.8rem;
+    }
+
+    .page-title h2 {
+        font-size: 1.7rem;
+    }
+
+    .hero {
+        padding: 3.5rem 1rem;
+    }
+
+    .card,
+    .intro-card,
+    .timeline-card,
+    .map-section,
+    .pattam-list,
+    .country-item,
+    .timing-card {
+        padding: 1.2rem;
+    }
+
+    .grid-3,
+    .grid-3-row,
+    .gallery-grid,
+    .country-grid,
+    .grid-2 {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-item {
+        height: 220px;
+    }
+
+    .table-responsive {
+        padding-bottom: 0.25rem;
+    }
+
+    .table-responsive table {
+        min-width: 0;
+    }
+
+    th,
+    td {
+        padding: 10px 8px;
+        font-size: 14px;
+        white-space: nowrap;
+        vertical-align: middle;
+    }
+
+    th:first-child,
+    td:first-child {
+        width: 50px;
+    }
+
+    th:nth-child(2),
+    td:nth-child(2) {
+        width: 35%;
+    }
+
+    th:last-child,
+    td:last-child {
+        width: auto;
+    }
+
+    iframe {
+        height: 320px;
+    }
+
+    footer {
+        padding: 1.8rem 1rem;
+    }
+
+    footer p {
+        margin-bottom: 0.4rem;
+    }
+}
+
+
+.members-section{
+    margin-top:50px;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:30px;
+    color:#8b0000;
+}
+
+.members-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:25px;
+}
+
+.member-card{
+    background:#fff;
+    border-radius:12px;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 4px 12px rgba(0,0,0,.12);
+    transition:.3s;
+}
+
+.member-card:hover{
+    transform:translateY(-5px);
+}
+
+.member-photo{
+    width:140px;
+    height:140px;
+    border-radius:50%;
+    object-fit:cover;
+    border:4px solid #d4af37;
+    margin-bottom:15px;
+}
+
+.member-card h4{
+    margin:10px 0 5px;
+    color:#7b1e1e;
+}
+
+.member-role{
+    color:#d35400;
+    font-weight:600;
+    margin:5px 0;
+}
+
+.member-place{
+    color:#555;
+    font-size:15px;
+}
+
+
+.management-row{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    flex-wrap:wrap;
+    margin-bottom:40px;
+}
+
+.group-card{
+    flex:1;
+    min-width:350px;
+    text-align:center;
+}
+
+.group-card h3{
+    margin-bottom:20px;
+    color:#8b0000;
+}
+
+.level-1{
+    max-width:300px;
+}
+
+.other-members{
+    margin-top:50px;
+}
+.top-row{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:40px;
+    align-items:start;
+}
+
+.branch{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.child-row{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    margin-top:35px;
+    position:relative;
+}
+
+.child-row::before{
+    content:"";
+    position:absolute;
+    top:-35px;
+    left:50%;
+    width:4px;
+    height:35px;
+    background:#d4af37;
+    transform:translateX(-50%);
+}
+
+.child-row::after{
+    content:"";
+    position:absolute;
+    top:-35px;
+    left:25%;
+    right:25%;
+    height:4px;
+    background:#d4af37;
+}
+
+@media(max-width:992px){
+
+    .top-row{
+        grid-template-columns:1fr;
+    }
+
+    .child-row{
+        flex-direction:column;
+    }
+
+    .child-row::after{
+        display:none;
+    }
+}
+/* ==================================================
+   Temple Opening Hours
+================================================== */
+
+.opening-hours-card{
+
+    background:#fffdf7;
+
+    border:3px solid #d4af37;
+
+    border-radius:18px;
+
+    padding:35px;
+
+    margin:40px auto;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.10);
+
+    text-align:center;
+
+}
+
+.opening-hours-card h2{
+
+    color:#8B0000;
+
+    margin-bottom:30px;
+
+    font-size:32px;
+
+}
+
+.opening-time-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:30px;
+
+    margin-bottom:25px;
+
+}
+
+.opening-box{
+
+    background:#fff;
+
+    border:2px solid #d4af37;
+
+    border-radius:15px;
+
+    padding:25px;
+
+}
+
+.opening-box h3{
+
+    color:#8B0000;
+
+    margin-bottom:15px;
+
+    font-size:24px;
+
+}
+
+.opening-box p{
+
+    font-size:20px;
+
+    line-height:1.8;
+
+    color:#444;
+
+}
+
+.opening-note{
+
+    background:#fff6db;
+
+    border-left:6px solid #d4af37;
+
+    border-radius:10px;
+
+    padding:18px;
+
+    font-size:18px;
+
+    color:#444;
+
+    margin-top:20px;
+
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.opening-hours-card{
+
+padding:20px;
+
+}
+
+.opening-hours-card h2{
+
+font-size:26px;
+
+}
+
+.opening-time-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.opening-box p{
+
+font-size:18px;
+
+}
+
+.opening-note{
+
+font-size:16px;
+
+}
+
+}
+
+
+/* ==========================================
+   Temple Services
+========================================== */
+
+.service-section{
+    margin:50px 0;
+}
+
+.service-card{
+    background:#fffdf7;
+    border:2px solid #d4af37;
+    border-radius:15px;
+    padding:35px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.service-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:18px;
+    margin-top:20px;
+}
+
+.service-item{
+    background:#fff;
+    border-left:5px solid #d4af37;
+    padding:16px 20px;
+    border-radius:10px;
+    font-size:18px;
+    font-weight:600;
+    color:#444;
+    transition:.3s;
+}
+
+.service-item:hover{
+    transform:translateY(-3px);
+    box-shadow:0 5px 15px rgba(0,0,0,.10);
+}
+
+.service-note{
+    margin-top:30px;
+    background:#fff5d8;
+    border-left:6px solid #8B0000;
+    padding:18px 20px;
+    border-radius:10px;
+    text-align:center;
+    font-size:18px;
+    line-height:1.7;
+    color:#444;
+}
+
+@media (max-width:768px){
+
+    .service-card{
+        padding:20px;
+    }
+
+    .service-grid{
+        grid-template-columns:1fr;
+    }
+
+    .service-item{
+        font-size:17px;
+    }
+
+    .service-note{
+        font-size:16px;
+    }
+
+}
+/* Table Heading - Left Align */
+.table-responsive th {
+    text-align: left;
+    padding-left: 24px;
+}
+
+/* Table Data - Center Align */
+.table-responsive td {
+    text-align: middle;
+}
+/* =====================================================
+   ORGANIZATION CHART
+===================================================== */
+/* =========================================================
+   ORGANIZATION CHART - EXPECTED DESKTOP STRUCTURE
+========================================================= */
+
+.org-chart {
+    width: 100%;
+    max-width: 1250px;
+    margin: 35px auto 60px;
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* =========================================================
+   COMMON CARD
+========================================================= */
+
+.org-member {
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.10);
+    text-align: center;
+    position: relative;
+    box-sizing: border-box;
+    overflow: visible;
+}
+
+.org-member .member-photo {
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+    border: 5px solid #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.20);
+    display: block;
+    margin: -55px auto 8px;
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
+}
+
+.org-member h3 {
+    margin: 7px 8px 3px;
+    font-size: 20px;
+    line-height: 1.3;
+    color: #8b1717;
+    font-weight: 700;
+}
+
+.org-member p {
+    margin: 0 8px 14px;
+    font-size: 16px;
+    line-height: 1.35;
+    color: #555;
+}
+
+/* =========================================================
+   TOP LEVEL
+   3 LARGE CARDS IN ONE ROW
+========================================================= */
+
+.top-level {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 75px;
+    width: 100%;
+    padding: 55px 20px 0;
+    box-sizing: border-box;
+}
+
+.top-level .org-member {
+    min-height: 210px;
+    padding: 55px 15px 15px;
+}
+
+/* Individual top-card border colors */
+
+.top-level .chairman {
+    border-top: 3px solid #c62828;
+}
+
+.top-level .secretary {
+    border-top: 3px solid #173fc5;
+}
+
+.top-level .treasurer {
+    border-top: 3px solid #126b32;
+}
+
+/* =========================================================
+   ROLE BADGES
+========================================================= */
+
+.role-badge {
+    display: inline-block;
+    padding: 6px 18px;
+    border-radius: 20px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+/* Top roles */
+
+.chairman-badge {
+    background: #bd1717;
+}
+
+.secretary-badge {
+    background: #1649c5;
+}
+
+.treasurer-badge {
+    background: #087331;
+}
+
+/* =========================================================
+   TOP CONNECTOR
+========================================================= */
+
+.connector-top {
+    height: 60px;
+    width: 60%;
+    margin: 0 auto;
+    position: relative;
+    border-bottom: 3px solid #c98b22;
+}
+
+/* Vertical connection from top cards */
+
+.connector-top::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: 16.66%;
+    height: 60px;
+    border-left: 2px solid #c98b22;
+}
+
+.connector-top::after {
+    content: "";
+    position: absolute;
+    top: -2px;
+    right: 16.66%;
+    height: 60px;
+    border-left: 2px solid #c98b22;
+}
+
+/* =========================================================
+   SECOND LEVEL
+   TWO GROUPS
+========================================================= */
+
+.second-level {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 45px;
+    width: 100%;
+    padding: 0 10px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+/* Each group */
+
+.sub-group {
+    position: relative;
+    min-width: 0;
+}
+
+/* Group title */
+
+.sub-title {
+    display: table;
+    margin: 0 auto 22px;
+    padding: 6px 20px;
+    border-radius: 18px;
+    color: #ffffff;
+    background: #e56d12;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.2;
+    position: relative;
+    z-index: 3;
+}
+
+/* Right group title */
+
+.second-level .sub-group:nth-child(2) .sub-title {
+    background: #941b7e;
+}
+
+/* Two cards inside each group */
+
+.sub-members {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
+
+/* Second level card */
+
+.small-card {
+    min-width: 0;
+    min-height: 175px;
+    padding: 45px 8px 10px;
+    border-top: 3px solid #e56d12;
+}
+
+.small-card .member-photo {
+    width: 82px;
+    height: 82px;
+    margin-top: -45px;
+}
+
+.small-card h3 {
+    font-size: 17px;
+}
+
+.small-card p {
+    font-size: 14px;
+}
+
+/* Second level badges */
+
+.vice-badge {
+    background: #e86d0c;
+    font-size: 13px;
+    padding: 5px 12px;
+}
+
+.assistant-badge {
+    background: #8b1680;
+    font-size: 13px;
+    padding: 5px 12px;
+}
+
+/* =========================================================
+   MIDDLE CONNECTOR
+========================================================= */
+
+.connector-middle {
+    width: 82%;
+    height: 55px;
+    margin: 0 auto;
+    position: relative;
+    border-bottom: 3px solid #c98b22;
+}
+
+/* Center vertical line */
+
+.connector-middle::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    height: 55px;
+    border-left: 2px solid #c98b22;
+}
+
+/* =========================================================
+   AUDITOR TITLE
+========================================================= */
+
+.section-title {
+    text-align: center;
+    margin: 0 0 28px;
+    position: relative;
+}
+
+.section-title_a {
+    text-align: center;
+    margin: 0 0 28px;
+    position: relative;
+}
+
+.section-title h2 {
+    display: inline-block;
+    margin: 0;
+    padding: 7px 22px;
+    border-radius: 18px;
+    background: #a91919;
+    color: #ffffff;
+    font-size: 18px;
+    line-height: 1.2;
+}
+
+
+/* =========================================================
+   AUDITORS
+   IMPORTANT: ALL 4 IN ONE ROW
+========================================================= */
+
+.auditors-row {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    width: 100%;
+    padding: 0 25px;
+    box-sizing: border-box;
+}
+
+/* Auditor cards */
+
+.auditors-row .org-member {
+    min-width: 0;
+    min-height: 90px;
+    padding: 15px 10px 10px 95px;
+    text-align: left;
+    border-top: 3px solid #e89b22;
+}
+
+/* Auditor image */
+
+.auditors-row .member-photo {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 72px;
+    height: 72px;
+    margin: 0;
+}
+
+/* Auditor badge */
+
+.auditors-row .role-badge {
+    display: none;
+}
+
+/* Auditor name */
+
+.auditors-row h3 {
+    font-size: 16px;
+    margin: 4px 0;
+    line-height: 1.25;
+}
+
+/* Auditor location */
+
+.auditors-row p {
+    font-size: 12px;
+    margin: 0;
+    line-height: 1.25;
+}
+
+/* =========================================================
+   BOTTOM CONNECTOR
+========================================================= */
+
+.connector-bottom {
+    width: 2px;
+    height: 50px;
+    margin: 0 auto;
+    background: #c98b22;
+    position: relative;
+}
+
+/* =========================================================
+   ACCOUNTANT
+   CENTERED BELOW AUDITORS
+========================================================= */
+
+.accountant-row {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.section-title_a h2 {
+    display: inline-block;
+    margin: 0;
+    padding: 7px 22px;
+    border-radius: 18px;
+    background: #218b87;
+    color: #ffffff;
+    font-size: 18px;
+    line-height: 1.2;
+}
+
+.accountant-card {
+    width: 395px;
+    min-height: 105px;
+    padding: 14px 15px 10px 110px;
+    text-align: left;
+    border: 1px solid #8bc5c5;
+    border-top: 3px solid #218b87;
+    position: relative;
+}
+
+/* Accountant photo */
+
+.accountant-card .member-photo {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 82px;
+    height: 82px;
+    margin: 0;
+}
+
+/* Accountant badge */
+
+.accountant-badge {
+    background: #157d7a;
+    font-size: 13px;
+    padding: 5px 12px;
+}
+
+/* Accountant text */
+
+.accountant-card h3 {
+    font-size: 18px;
+    margin: 5px 0;
+}
+
+.accountant-card p {
+    font-size: 14px;
+    margin: 0;
+}
+
+/* =========================================================
+   DESKTOP LINE CONNECTIONS
+========================================================= */
+
+/* Horizontal line connecting the 3 top cards */
+
+.top-level {
+    position: relative;
+}
+
+.top-level::before {
+    content: "";
+    position: absolute;
+    left: 15%;
+    right: 15%;
+    top: 0;
+    border-top: 2px solid #c98b22;
+}
+
+/* Vertical line from top row */
+
+.top-level .org-member::before {
+    content: "";
+    position: absolute;
+    top: -55px;
+    left: 50%;
+    height: 55px;
+    border-left: 2px solid #c98b22;
+}
+
+/* =========================================================
+   RESPONSIVE - TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .org-chart {
+        max-width: 95%;
+    }
+
+    .top-level {
+        gap: 25px;
+    }
+
+    .second-level {
+        gap: 25px;
+    }
+
+    .auditors-row {
+        gap: 12px;
+        padding: 0 10px;
+    }
+
+    .auditors-row .org-member {
+        padding-left: 80px;
+    }
+
+    .auditors-row .member-photo {
+        width: 62px;
+        height: 62px;
+        left: 8px;
+    }
+
+    .auditors-row h3 {
+        font-size: 14px;
+    }
+
+    .auditors-row p {
+        font-size: 11px;
+    }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 750px) {
+
+    .org-chart {
+        width: 94%;
+        margin-top: 25px;
+    }
+
+    /* Top cards become one column */
+
+    .top-level {
+        grid-template-columns: 1fr;
+        gap: 65px;
+        padding-top: 55px;
+    }
+
+    .top-level .org-member {
+        max-width: 380px;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .top-level::before,
+    .top-level .org-member::before,
+    .connector-top::before,
+    .connector-top::after {
+        display: none;
+    }
+
+    .connector-top {
+        width: 2px;
+        height: 50px;
+        border: none;
+        background: #c98b22;
+    }
+
+    /* Second level */
+
+    .second-level {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .sub-group {
+        width: 100%;
+    }
+
+    .sub-members {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    /* Auditors */
+
+    .auditors-row {
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+
+    .auditors-row .org-member {
+        padding-left: 80px;
+    }
+
+    /* Accountant */
+
+    .accountant-card {
+        width: 100%;
+        max-width: 395px;
+    }
+
+    .connector-middle {
+        width: 2px;
+        height: 45px;
+        background: #c98b22;
+        border: none;
+    }
+
+    .connector-middle::before {
+        display: none;
+    }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 500px) {
+
+    .top-level {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .top-level .org-member {
+        min-height: 195px;
+    }
+
+    .second-level {
+        padding: 0;
+    }
+
+    .sub-members {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .small-card {
+        max-width: 300px;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .auditors-row {
+        grid-template-columns: 1fr;
+        padding: 0;
+    }
+
+    .auditors-row .org-member {
+        max-width: 320px;
+        width: 100%;
+        margin: auto;
+    }
+
+    .section-title h2 {
+        font-size: 16px;
+    }
+}
+
+/* =========================================================
+   REMOVE ALL ORGANIZATION CHART LINES
+========================================================= */
+
+/* Remove top horizontal line */
+.top-level::before {
+    display: none !important;
+}
+
+/* Remove vertical lines above top cards */
+.top-level .org-member::before {
+    display: none !important;
+}
+
+/* Remove top connector */
+.connector-top {
+    display: none !important;
+}
+
+.connector-top::before,
+.connector-top::after {
+    display: none !important;
+}
+
+/* Remove middle connector */
+.connector-middle {
+    display: none !important;
+}
+
+.connector-middle::before {
+    display: none !important;
+}
+
+/* Remove bottom connector */
+.connector-bottom {
+    display: none !important;
+}
+
+/* Remove any remaining connector borders/backgrounds */
+.connector-top,
+.connector-middle,
+.connector-bottom {
+    border: none !important;
+    background: none !important;
+}
+/* =========================================================
+   SPACING AFTER REMOVING CONNECTOR LINES
+========================================================= */
+
+/* Space between TOP LEVEL cards and group titles */
+.second-level {
+    margin-top: 65px;
+}
+
+/* Space between group title and its cards */
+.sub-title {
+    margin-bottom: 32px;
+}
+
+/* Space between second-level cards and AUDITOR title */
+.section-title {
+    margin-top: 65px;
+    margin-bottom: 32px;
+}
+
+/* Keep auditor title clearly separated from cards above */
+.section-title h2 {
+    position: relative;
+    z-index: 2;
+}
+
+/* Space between auditor cards and accountant section */
+.section-title_a {
+    margin-top: 55px;
+    margin-bottom: 32px;
+}
+/* =========================================================
+   MATCH CARD SIZES BY HIERARCHY LEVEL
+========================================================= */
+
+/* =========================================================
+   LEVEL 1 — CHAIRMAN / SECRETARY / TREASURER
+   All 3 cards exactly the same size
+========================================================= */
+
+.top-level {
+    align-items: stretch;
+}
+
+.top-level .org-member {
+    width: 100%;
+    height: 300px;
+    min-height: 300px;
+    max-height: 300px;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   LEVEL 2 — VICE CHAIRMAN / ASSISTANT SECRETARY
+   All 4 cards exactly the same size
+========================================================= */
+
+.sub-members {
+    align-items: stretch;
+}
+
+.sub-members .small-card {
+    width: 100%;
+    height: 270px;
+    min-height: 220px;
+    max-height: 220px;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   LEVEL 3 — AUDITORS
+   All 4 auditor cards exactly the same size
+========================================================= */
+
+.auditors-row {
+    align-items: stretch;
+}
+
+.auditors-row .org-member {
+    width: 100%;
+    height: 120px;
+    min-height: 120px;
+    max-height: 120px;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   LEVEL 4 — ACCOUNTANT
+========================================================= */
+
+.accountant-card {
+    width: 395px;
+    height: 115px;
+    min-height: 115px;
+    max-height: 115px;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   KEEP TEXT INSIDE FIXED CARDS
+========================================================= */
+
+.top-level .org-member h3,
+.top-level .org-member p,
+.sub-members .small-card h3,
+.sub-members .small-card p,
+.auditors-row .org-member h3,
+.auditors-row .org-member p,
+.accountant-card h3,
+.accountant-card p {
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   SPACING BETWEEN LEVELS — NO LINES
+========================================================= */
+
+.second-level {
+    margin-top: 70px;
+}
+
+.sub-title {
+    margin-bottom: 30px;
+}
+
+.section-title {
+    margin-top: 70px;
+    margin-bottom: 30px;
+}
+
+.section-title_a {
+    margin-top: 60px;
+    margin-bottom: 30px;
+}
+
+.site-branding {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.temple-logo {
+    width: 100px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 10%;
+    flex-shrink: 0;
+    border: 2px solid #d4af37;
+    position: relative;
+    overflow: hidden;
+}
+
+.site-title-wrapper h1 {
+    margin: 0;
+}
+
+.site-title-wrapper p {
+    margin: 4px 0 0;
+}
+/* =========================================================
+   TEMPLE ANNOUNCEMENT MARQUEE
+   (inserted automatically by js/main.js on every page)
+========================================================= */
+
+.temple-marquee {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+
+    /* Fixed directly under the fixed header — see FIXED HEADER +
+       TEMPLE MARQUEE comment near the header rule. */
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    z-index: 900;
+
+    background: #0b1f4d;
+    border-bottom: 3px solid var(--secondary);
+
+    display: flex;
+    align-items: center;
+
+    padding: 0.55rem 0;
+    box-sizing: border-box;
+}
+
+/* Moving content (two identical copies placed back-to-back so
+   translating exactly -50% loops with no visible jump) */
+.marquee-track {
+    display: flex;
+    width: max-content;
+    align-items: center;
+
+    animation-name: templeMarquee;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-duration: var(--marquee-duration, 26s);
+    will-change: transform;
+}
+
+/* Each announcement */
+.marquee-item {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+
+    font-family: var(--font-mukta-malar), 'Noto Sans Tamil', 'Latha', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #ffffff;
+
+    padding-right: 70px;
+}
+
+/* Leading "அடுத்த விசேஷ நாட்கள்" label */
+.marquee-lead {
+    color: var(--secondary);
+    font-weight: 700;
+}
+
+/* Event type label (🌑 அமாவாசை / 🌕 பௌர்ணமி / 🎉 திருவிழா) */
+.marquee-label {
+    color: var(--secondary);
+    font-weight: 700;
+    margin-right: 6px;
+}
+
+/* Date */
+.marquee-date {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+/* Tamil date / festival name / temple house */
+.marquee-tamil-date,
+.marquee-event-name,
+.marquee-house {
+    color: #f1d9a0;
+}
+
+/* Day */
+.marquee-day {
+    color: #cfd8ff;
+}
+
+/* Separators */
+.marquee-separator {
+    color: var(--secondary);
+    font-weight: 700;
+    margin: 0 14px;
+}
+
+/* Friendly "no upcoming events" message */
+.marquee-message {
+    color: #ffffff;
+    padding-right: 0;
+}
+
+/* Static (non-scrolling) state used when there is nothing to show */
+.temple-marquee.marquee-static {
+    justify-content: center;
+}
+
+.marquee-static .marquee-track {
+    animation: none !important;
+}
+
+/* Pause on hover, desktop pointer devices only */
+@media (hover: hover) and (pointer: fine) {
+    .temple-marquee:hover .marquee-track {
+        animation-play-state: paused;
+    }
+}
+
+/* =========================================================
+   MARQUEE ANIMATION
+========================================================= */
+
+@keyframes templeMarquee {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .temple-marquee {
+        padding: 0.5rem 0;
+    }
+
+    .marquee-item {
+        font-size: 0.85rem;
+        padding-right: 40px;
+    }
+
+    .marquee-separator {
+        margin: 0 8px;
+    }
+}
+
+/* =========================================================
+   GALLERY IMAGE SLIDESHOW
+   (behaviour driven by js/main.js — .gallery-slideshow,
+   .gallery-slides, .gallery-slide, .gallery-prev, .gallery-next,
+   .gallery-dots)
+
+   .gallery-slides has no fixed height — js/main.js measures each
+   image's natural width/height and sets an inline px height that
+   matches the ACTIVE slide's own aspect ratio, so no image is ever
+   cropped or stretched. The min-height/max-height below are only a
+   safety net (before JS runs, and to cap extreme portrait photos).
+========================================================= */
+
+.gallery-slideshow {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    margin: 30px auto;
+    box-sizing: border-box;
+
+    border-radius: 18px;
+    overflow: hidden;
+    background: #111;
+    box-shadow: var(--shadow);
+    border: 3px solid var(--secondary);
+}
+
+.gallery-slides {
+    position: relative;
+    width: 100%;
+    min-height: 260px;
+    max-height: 80vh;
+    transition: height 0.5s ease;
+}
+
+/* Individual slide (stacked, cross-faded) */
+
+.gallery-slide {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.gallery-slide.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.gallery-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Previous / Next buttons */
+
+.gallery-prev,
+.gallery-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 46px;
+    height: 46px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(0, 0, 0, 0.55);
+    color: var(--white);
+
+    font-size: 1.5rem;
+    line-height: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 10;
+    transition: background 0.3s ease;
+}
+
+.gallery-prev:hover,
+.gallery-next:hover {
+    background: var(--primary);
+}
+
+.gallery-prev {
+    left: 16px;
+}
+
+.gallery-next {
+    right: 16px;
+}
+
+/* Dots */
+
+.gallery-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    max-width: 1400px;
+    margin: 1.2rem auto 0;
+}
+
+.gallery-dot {
+    width: 11px;
+    height: 11px;
+    padding: 0;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #ddd;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+
+    cursor: pointer;
+    transition: width 0.3s ease, background 0.3s ease;
+}
+
+.gallery-dot.active {
+    width: 28px;
+    border-radius: 10px;
+    background: var(--primary);
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .gallery-slideshow {
+        border-radius: 14px;
+    }
+
+    .gallery-slides {
+        min-height: 220px;
+        max-height: 70vh;
+    }
+
+    .gallery-prev,
+    .gallery-next {
+        width: 40px;
+        height: 40px;
+        font-size: 1.25rem;
+    }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .gallery-slideshow {
+        width: 100%;
+        margin: 20px auto;
+        border-radius: 12px;
+    }
+
+    .gallery-slides {
+        min-height: 180px;
+        max-height: 60vh;
+    }
+
+    .gallery-prev,
+    .gallery-next {
+        width: 36px;
+        height: 36px;
+        font-size: 1.1rem;
+    }
+
+    .gallery-prev {
+        left: 10px;
+    }
+
+    .gallery-next {
+        right: 10px;
+    }
+
+    .gallery-dots {
+        margin-top: 1rem;
+        gap: 8px;
+    }
+
+    .gallery-dot {
+        width: 9px;
+        height: 9px;
+    }
+
+    .gallery-dot.active {
+        width: 22px;
+    }
+}
+
+@media (max-width: 400px) {
+
+    .gallery-slides {
+        min-height: 150px;
+    }
+
+    .gallery-prev,
+    .gallery-next {
+        width: 30px;
+        height: 30px;
+        font-size: 0.95rem;
+    }
+
+    .gallery-prev {
+        left: 6px;
+    }
+
+    .gallery-next {
+        right: 6px;
+    }
+}
+
+/* =========================================================
+   POOJA DETAILS - INTERACTIVE CARDS
+   (behaviour driven by js/main.js — .pooja-tab, .pooja-description;
+   selection is toggled via the .active class on data-pooja pairs)
+========================================================= */
+
+.pooja-details-section {
+    display: flex;
+    align-items: stretch;
+    gap: 1.5rem;
+
+    width: 100%;
+    max-width: 1150px;
+    margin: 0 auto 2.5rem;
+    box-sizing: border-box;
+}
+
+.pooja-tabs {
+    flex: 0 0 33%;
+    max-width: 33%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.pooja-tab {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+
+    width: 100%;
+    min-width: 0;
+    text-align: left;
+
+    background: var(--white);
+    border: none;
+    border-left: 4px solid var(--secondary);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    padding: 0.7rem 1rem;
+
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-dark);
+
+    cursor: pointer;
+    transition: background 0.25s ease, color 0.25s ease, transform 0.2s ease;
+}
+
+.pooja-tab:hover {
+    background: #fff6e6;
+    transform: translateX(3px);
+}
+
+.pooja-tab.active {
+    background: var(--primary);
+    border-left-color: var(--secondary);
+    color: var(--white);
+}
+
+.pooja-tab-icon {
+    flex: 0 0 auto;
+    font-size: 1.15rem;
+    line-height: 1;
+}
+
+.pooja-tab-text {
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.pooja-description-panel {
+    flex: 1;
+    min-width: 0;
+    position: relative;
+
+    display: grid;
+
+    background: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    border-top: 4px solid var(--secondary);
+    padding: 1.8rem 2rem;
+    box-sizing: border-box;
+}
+
+/* All descriptions share the same grid cell so the panel height
+   never jumps between tabs; only the active one is visible. */
+.pooja-description {
+    grid-column: 1;
+    grid-row: 1;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(6px);
+    pointer-events: none;
+    transition: opacity 0.35s ease, transform 0.35s ease, visibility 0.35s ease;
+}
+
+.pooja-description.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.pooja-description-title {
+    color: var(--primary);
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    overflow-wrap: break-word;
+}
+
+.pooja-description-text p {
+    font-size: 1.02rem;
+    line-height: 1.9;
+    color: var(--text-dark);
+    margin-bottom: 0.9rem;
+    overflow-wrap: break-word;
+}
+
+.pooja-description-text p:last-child {
+    margin-bottom: 0;
+}
+
+/* Tablet / mobile: compact 2-column tab grid above the panel */
+@media (max-width: 800px) {
+
+    .pooja-details-section {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .pooja-tabs {
+        flex: none;
+        max-width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.6rem;
+    }
+
+    .pooja-tab {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3rem;
+        padding: 0.65rem 0.8rem;
+        border-left-width: 3px;
+    }
+
+    .pooja-description-panel {
+        padding: 1.4rem 1.3rem;
+    }
+
+    .pooja-description-title {
+        font-size: 1.2rem;
+    }
+
+    .pooja-description-text p {
+        font-size: 0.98rem;
+        line-height: 1.8;
+    }
+}
+
+@media (max-width: 420px) {
+
+    .pooja-tab {
+        font-size: 0.85rem;
+        padding: 0.55rem 0.65rem;
+    }
+
+    .pooja-tab-icon {
+        font-size: 1.05rem;
+    }
+}
