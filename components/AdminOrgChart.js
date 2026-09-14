@@ -52,14 +52,14 @@ export default function AdminOrgChart() {
       </div>
 
       <div className="section-title">
-        <h2>தனிக்கையாளர்கள்</h2>
+        <h2>தணிக்கையாளர்கள்</h2>
       </div>
 
       <div className="org-row auditors-row">
         {auditors.map((member) => (
           <div className="org-member" key={member.key}>
             <MemberPhoto photo={member.photo} name={member.name} sizes="72px" />
-            <span className="role-badge auditor-badge">தனிக்கையாளர்</span>
+            <span className="role-badge auditor-badge">தணிக்கையாளர்</span>
             <h3>{member.name}</h3>
             <p>{member.place}</p>
           </div>
