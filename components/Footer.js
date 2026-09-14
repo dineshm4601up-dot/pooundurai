@@ -11,13 +11,13 @@ export default function Footer() {
         &copy; <CurrentYear /> அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.
       </p>
       <p>
-        <span style={{ fontSize: '1.05rem' }}>
+        <small>
           Developed by{' '}
           <a href={site.developer.url} target="_blank" rel="noopener">
             {site.developer.name}
           </a>{' '}
           (P.K.V)
-        </span>
+        </small>
       </p>
     </footer>
   );
